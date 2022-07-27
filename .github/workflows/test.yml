@@ -7,7 +7,6 @@ on:
       
 jobs:
   build:
-    name: my secound job
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -18,10 +17,11 @@ jobs:
           - os: ubuntu-18.04
             node: 13
             experimental: true
-     steps:
-     - uses: actions/checkout@v2
-     - name: Use Node.js ${{ matrix.node}}
-       uses: actions/setup-node@v1
-       with:
-          node-version: $ {{ matrix.node }}
-     - run: npm test 
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node}}
+      uses: actions/setup-node@v1
+      with:
+        node-version: $ {{ matrix.node }}
+    - run: npm install
+    - run: npm test 
