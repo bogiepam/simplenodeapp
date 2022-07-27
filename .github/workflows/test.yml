@@ -1,0 +1,27 @@
+name: test
+
+on: 
+  pull_request:
+    branches:
+      - master
+      
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-18.04]
+        node: [12]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        include:
+          - os: ubuntu-18.04
+            node: 13
+            experimental: true
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node}}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node }}
+    - run: npm install
+    - run: npm test 
