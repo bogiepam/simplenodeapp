@@ -1,0 +1,14 @@
+name: 'My first continer action'
+description: 'A cloud guru'
+author: 'Bogi'
+inputs:
+  myInput:
+    description: 'getting to use'
+    required: true
+    default: 'Awesome Guru'
+outputs:
+  MyOutput:
+    description: 'total memory'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
